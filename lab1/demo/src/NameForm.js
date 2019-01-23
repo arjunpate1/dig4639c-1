@@ -5,7 +5,7 @@ class NameForm extends React.Component {
         this.state = {value: ''};
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
       }
 
       handleChange(event) {
