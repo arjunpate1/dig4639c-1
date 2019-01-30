@@ -42,7 +42,6 @@ export default class App extends React.Component {
     return true;
   }
 
-
   render() {
     if (this.state.salutation) {
       return(
