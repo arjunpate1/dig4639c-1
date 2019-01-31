@@ -48,7 +48,7 @@ export default class App extends React.Component {
         <View style={styles.container} flexDirection="column" alignItems='stretch'>
           <Text style={styles.defaultText}>{this.state.salutation}</Text>
         </View>
-      )
+      );
     } else {
       return (
         <View style={styles.container} flexDirection="column" alignItems='stretch'>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'blue',
+    backgroundColor:'teal',
     height:75,
     margin:30,
   },
@@ -83,12 +83,14 @@ const styles = StyleSheet.create({
   },
   defaultText:
   {
-    fontSize:20
+    fontSize:30,
+    textAlign: 'center'
   },
   errorText:
   {
     fontSize:20,
-    color:'red'
+    color:'red',
+    textAlign: 'center'
   },
   container: {
     flex: 1,
