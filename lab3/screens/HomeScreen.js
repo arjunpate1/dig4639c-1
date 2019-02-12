@@ -4,6 +4,7 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
+  FlatList,
   Text,
   TouchableOpacity,
   View,
@@ -17,52 +18,38 @@ export default class HomeScreen extends React.Component {
     header: null,
   };
 
+  _gotoScreen = (key) => {
+    console.log("Going to " + key);
+}
+
   render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
+     const {navigate} = this.props.navigation;
+     return (
+       <View style={styles.container}>
+         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+           <View style={styles.getStartedContainer}>
+             <Text style={styles.getStartedText}>Here are some cute bunnies!</Text>
+             <FlatList
+              data={[{key: 'bunny1',
+                      image: require('../assets/images/bunny1.png')},
+                     {key: 'bunny2',
+                      image: require('../assets/images/bunny2.png')},
+                      {key: 'bunny3',
+                       image: require('../assets/images/bunny3.png')},
+                       {key: 'bunny4',
+                        image: require('../assets/images/bunny4.png')}
+                    ]}
+              keyExtractor={this._keyExtractor}
+               renderItem={({item}) => <TouchableOpacity onPress={(event) => { console.log(item.key) }}>
+                 <Image source={item.image} style={{width:200,height:200}} />
+               </TouchableOpacity>}
+             />
+           </View>
+         </ScrollView>
+       </View>
+     );
+   }
 
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
-      </View>
-    );
-  }
 
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
