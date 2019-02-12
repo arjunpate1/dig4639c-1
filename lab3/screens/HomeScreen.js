@@ -13,6 +13,9 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
+import { Detail } from '../screens/Detail';
+import { createStackNavigator } from 'react-navigation';
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -31,17 +34,27 @@ export default class HomeScreen extends React.Component {
              <Text style={styles.getStartedText}>Here are some cute bunnies!</Text>
              <FlatList
               data={[{key: 'bunny1',
-                      image: require('../assets/images/bunny1.png')},
-                     {key: 'bunny2',
-                      image: require('../assets/images/bunny2.png')},
+                      image: require('../assets/images/bunny1.png'),
+                      title: 'Delightful Little Being',
+                      author:'By The Bunny Manifiesto'},
+                     {key:'bunny2',
+                      image: require('../assets/images/bunny2.png'),
+                      title:'Fluffy',
+                      author:'By My Lovely Bunny'},
                       {key: 'bunny3',
-                       image: require('../assets/images/bunny3.png')},
+                       image: require('../assets/images/bunny3.png'),
+                       title:'Flower Girl',
+                       author:'By Bored Panda'},
                        {key: 'bunny4',
-                        image: require('../assets/images/bunny4.png')}
+                        image: require('../assets/images/bunny4.png'),
+                        title:'Regal',
+                        author:'By Anonymous'}
                     ]}
               keyExtractor={this._keyExtractor}
-               renderItem={({item}) => <TouchableOpacity onPress={(event) => { console.log(item.key) }}>
+               renderItem={({item}) => <TouchableOpacity onPress={() => navigate("Detail",{ bunnyName:item.key, bunnyImage:item.image, bunnyTitle:item.title, bunnyAuthor:item.author })}>
                  <Image source={item.image} style={{width:200,height:200}} />
+                 <Text style={styles.imageTitle}>{item.title}</Text>
+                 <Text style={styles.imageAuthor}>{item.author}</Text>
                </TouchableOpacity>}
              />
            </View>
@@ -89,6 +102,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  imageTitle:{
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  imageAuthor:{
+    textAlign: 'center',
+    marginBottom: 20,
   },
   developmentModeText: {
     marginBottom: 20,
