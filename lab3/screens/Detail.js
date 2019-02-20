@@ -14,9 +14,9 @@ export default class Detail extends React.Component {
     const passedAuthor = this.props.navigation.getParam("bunnyAuthor", "defaultValue");
     return (
       <View style={styles.container}>
-        <Image source={passedImage} style={{width:"100%",height:"60%",margin:'5%'}}/>
+        <Image source={passedImage} style={{width:"90%",height:"60%"}}/>
         <Text style={styles.imageTitle}>{passedTitle}</Text>
-        <Text>{passedAuthor}</Text>
+        <Text style={styles.imageAuthor}>{passedAuthor}</Text>
         <Button title="Back" onPress={() => this.props.navigation.goBack()}
         />
       </View>
@@ -28,11 +28,15 @@ const styles = StyleSheet.create({
   imageTitle: {
     fontSize: 30,
   },
+  imageAuthor: {
+    paddingBottom: 15,
+  },
   container: {
     flex: 1,
+    backgroundColor: '#dee8eb',
     alignItems:'center',
     justifyContent:'center',
     alignItems: 'center',
-    marginHorizontal: 10,
+    //marginHorizontal: 10,
   },
 });

@@ -101,11 +101,12 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#dee8eb',
   },
   imageTitle:{
     textAlign: 'center',
     fontSize: 16,
+    paddingTop:5,
   },
   imageAuthor:{
     textAlign: 'center',
@@ -149,10 +150,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   getStartedText: {
-    fontSize: 17,
+    fontSize: 20,
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
     textAlign: 'center',
+    paddingBottom:15,
   },
   tabBarInfoContainer: {
     position: 'absolute',
